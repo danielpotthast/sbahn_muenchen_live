@@ -32,8 +32,8 @@
   },
   "issues": {
     "deprecated_yaml": {
-      "title": "Die SBM-YAML-Konfiguration ist veraltet",
-      "description": "SBM-Stationen aus der `configuration.yaml` wurden automatisch als Config Entries importiert. Der Block `sensor: - platform: sbm` kann jetzt aus der `configuration.yaml` entfernt werden."
+      "title": "Die S-Bahn München-YAML-Konfiguration ist veraltet",
+      "description": "S-Bahn München-Stationen aus der `configuration.yaml` wurden automatisch als Config Entries importiert. Der Block `sensor: - platform: sbahn_muenchen_live` kann jetzt aus der `configuration.yaml` entfernt werden."
     }
   }
 }
