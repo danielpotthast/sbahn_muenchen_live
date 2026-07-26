@@ -7,5 +7,5 @@
   "documentation": "https://github.com/danielpotthast/sbahn_muenchen_live",
   "iot_class": "cloud_polling",
   "loggers": ["SBM"],
-  "requirements": ["websockets==13.1", "certifi==2024.8.30"]
+  "requirements": ["websockets>=12.0", "certifi>=2024.7.4"]
 }
