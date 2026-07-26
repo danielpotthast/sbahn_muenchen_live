@@ -15,19 +15,20 @@ sensor:
 
   # Advanced configuration with filters
   #
-  # `destinations` must match the exact text the live feed reports, not the
-  # shortened station names used elsewhere in this file — e.g. the airport
-  # itself shows up as a destination named "Flughafen/Airport ✈", and
-  # München Leuchtenbergring keeps its "München " prefix here. Set up the
-  # sensor without filters first and check its `departures` attribute in
-  # Developer Tools -> States to see the real strings before filtering.
+  # `destinations` matches as a case-insensitive substring of the live feed's
+  # text, not an exact string — the same physical destination is reported
+  # differently depending on which station asks (e.g. a train to the airport
+  # shows up as "Flughafen/Airport ✈" at München Hbf, but as "Flughafen ✈,
+  # Flughafen ✈" or "Freising, Flughafen ✈" at München Ost). A short filter
+  # like "Herrsching" or "Leuchtenbergring" matches regardless of station or
+  # exact formatting; `lines` still matches exactly (e.g. "S1").
   - platform: sbahn_muenchen_live
     nextdeparture:
       - station: "Flughafen Besucherpark"
         name: "Munich Airport S-Bahn"
         destinations:
           - "Herrsching"
-          - "München Leuchtenbergring"
+          - "Leuchtenbergring"
         lines:
           - "S8"
           - "S1"

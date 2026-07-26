@@ -101,10 +101,19 @@ def _filter_departures(
     timeoffset: int,
     number: int,
 ) -> list[dict[str, Any]]:
-    """Filter and shape raw departures according to the entity's options."""
+    """Filter and shape raw departures according to the entity's options.
+
+    `destinations` matches as a case-insensitive substring, not an exact string:
+    the same physical destination is reported with different text depending on
+    which station asks (e.g. "Flughafen/Airport ✈" at München Hbf, but
+    "Freising, Flughafen ✈" or "Flughafen ✈, Flughafen ✈" at München Ost for
+    the same train), so exact matching silently drops matching departures at
+    some stations.
+    """
     filtered: list[dict[str, Any]] = []
     for departure in departures:
-        if "" not in destinations[:1] and departure["destination"] not in destinations:
+        destination = departure["destination"]
+        if "" not in destinations[:1] and not any(d.lower() in destination.lower() for d in destinations):
             continue
 
         if "" not in lines[:1] and departure["line"] not in lines:

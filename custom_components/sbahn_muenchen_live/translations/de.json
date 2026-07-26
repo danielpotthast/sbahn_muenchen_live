@@ -21,7 +21,7 @@
   "options": {
     "step": {
       "init": {
-        "description": "Ziele müssen exakt dem Text im `departures`-Attribut des Sensors entsprechen (z. B. \"Flughafen/Airport ✈\", nicht ein verkürzter Stationsname) — zuerst leer lassen, im Attribut nachsehen, dann eintragen.",
+        "description": "Ziele werden als Teilstring (Groß-/Kleinschreibung egal) gegen den Text im `departures`-Attribut abgeglichen, da dasselbe Ziel je nach Station unterschiedlich benannt wird (z. B. \"Flughafen/Airport ✈\" vs. \"Freising, Flughafen ✈\") — ein kurzer Filter wie \"Flughafen\" erfasst beides. Linien werden weiterhin exakt abgeglichen.",
         "data": {
           "destinations": "Ziele (kommagetrennt)",
           "lines": "Linien (kommagetrennt)",
@@ -29,7 +29,7 @@
           "number": "Anzahl Abfahrten"
         },
         "data_description": {
-          "destinations": "Exakter Zieltext wie live angezeigt, z. B. \"Flughafen/Airport ✈\"",
+          "destinations": "Teilstring, z. B. \"Flughafen\" erfasst \"Flughafen/Airport ✈\" und \"Freising, Flughafen ✈\"",
           "lines": "Exakte Linienbezeichnung wie live angezeigt, z. B. \"S1, S8\""
         }
       }

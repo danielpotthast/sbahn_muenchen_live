@@ -53,12 +53,16 @@ After setup, use the integration's **Configure** button to adjust:
 | `timeoffset` | 0 | Minimum minutes until departure |
 | `number` | 5 | Maximum number of departures to show |
 
-> **Note:** `destinations` and `lines` must match the *exact* text the live
-> feed reports, not the shortened station names used for the dropdown above.
-> The airport, for example, appears as a destination named
-> `"Flughafen/Airport ✈"`, not `"Flughafen Terminal"`. Set up the sensor
-> without filters first, check its `departures` attribute in **Developer
-> Tools → States** to see the real strings, then fill in the filter.
+> **Note:** `destinations` matches as a case-insensitive **substring**, not an
+> exact string — this is intentional: the same physical destination is
+> reported with different text depending on which station asks. For example,
+> a train to the airport shows up as `"Flughafen/Airport ✈"` at München Hbf,
+> but as `"Freising, Flughafen ✈"` or `"Flughafen ✈, Flughafen ✈"` at München
+> Ost. A filter of `"Flughafen"` matches all of these; the full exact string
+> would silently miss most of them depending on the station. `lines` still
+> matches exactly (e.g. `S1`), since line names don't vary like this. If in
+> doubt, set up the sensor without filters first and check its `departures`
+> attribute in **Developer Tools → States** to see the real strings.
 
 ### Legacy YAML configuration
 
