@@ -117,6 +117,7 @@ def _filter_departures(
         nextdep = {k: departure.get(k, "") for k in ("destination", "line", "type", "cancelled", "icon", "platform")}
         nextdep["time_in_mins"] = time_to_departure
         nextdep["delay"] = departure.get("delay", 0)
+        nextdep["train_units"] = departure.get("train_units")
         filtered.append(nextdep)
 
         if len(filtered) >= number:

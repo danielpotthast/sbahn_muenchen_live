@@ -89,8 +89,17 @@ The sensor provides the following state and attributes:
 - `platform`: Platform number
 - `delay`: Delay in minutes
 - `icon`: Material Design Icon
+- `train_units`: Number of coupled S-Bahn units (1–3) for this train, if known (see note below)
 - `departures`: List of all upcoming departures
 - `messages`: Service messages (currently empty — the geOps timetable endpoint doesn't provide any)
+
+> **Note on `train_units`:** geOps only reports train formation (how many
+> units are coupled together) for vehicles currently broadcasting live
+> position data, via a separate realtime feed the integration keeps a single
+> shared background connection open for (covering the whole network, reused
+> across all configured stations). For trains without an active live
+> position yet — usually further in the future — `train_units` is `null`
+> until that data arrives, closer to departure time.
 
 ## Example Lovelace Card
 

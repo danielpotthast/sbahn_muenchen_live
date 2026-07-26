@@ -200,6 +200,7 @@ class SbmApi:
             "icon": icon,
             "cancelled": False,  # SBM API doesn't provide cancellation info in timetable
             "type": self._get_transport_type(line_name),
+            "train_id": content.get("train_id"),
         }
 
     def _get_icon(self, line: str) -> str:

@@ -12,6 +12,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, Upda
 
 from .const import DOMAIN, SCAN_INTERVAL
 from .sbmapi import SbmApi
+from .trajectory import TrainFormationTracker
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -27,10 +28,18 @@ class SbmData:
 class SbmDataUpdateCoordinator(DataUpdateCoordinator[SbmData]):
     """Coordinator that polls departures and messages for one station."""
 
-    def __init__(self, hass: HomeAssistant, api: SbmApi, timeoffset: int, number: int) -> None:
+    def __init__(
+        self,
+        hass: HomeAssistant,
+        api: SbmApi,
+        tracker: TrainFormationTracker,
+        timeoffset: int,
+        number: int,
+    ) -> None:
         """Initialize the coordinator."""
         super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=SCAN_INTERVAL)
         self._api = api
+        self._tracker = tracker
         self._timeoffset = timeoffset
         # Overfetch: destinations/lines filtering in the sensor happens after this,
         # so a raw limit equal to `number` could leave fewer than `number` results.
@@ -63,6 +72,8 @@ class SbmDataUpdateCoordinator(DataUpdateCoordinator[SbmData]):
             departures = previous.departures
         else:
             departures = departures_result
+            for departure in departures:
+                departure["train_units"] = self._tracker.units(departure.get("train_id"))
 
         if isinstance(messages_result, BaseException):
             _LOGGER.warning("Could not update SBM messages: %s", messages_result)
