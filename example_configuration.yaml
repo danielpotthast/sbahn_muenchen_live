@@ -10,13 +10,20 @@ sensor:
   # Basic configuration using station name
   - platform: sbahn_muenchen_live
     nextdeparture:
-      - station: "München Flughafen Besucherpark"
+      - station: "Flughafen Besucherpark"
         name: "Airport Departures"
 
   # Advanced configuration with filters
+  #
+  # `destinations` must match the exact text the live feed reports, not the
+  # shortened station names used elsewhere in this file — e.g. the airport
+  # itself shows up as a destination named "Flughafen/Airport ✈", and
+  # München Leuchtenbergring keeps its "München " prefix here. Set up the
+  # sensor without filters first and check its `departures` attribute in
+  # Developer Tools -> States to see the real strings before filtering.
   - platform: sbahn_muenchen_live
     nextdeparture:
-      - station: "München Flughafen Besucherpark"
+      - station: "Flughafen Besucherpark"
         name: "Munich Airport S-Bahn"
         destinations:
           - "Herrsching"
@@ -30,13 +37,13 @@ sensor:
   # Multiple sensors for different lines
   - platform: sbahn_muenchen_live
     nextdeparture:
-      - station: "München Flughafen Besucherpark"
+      - station: "Flughafen Besucherpark"
         name: "S1 Departures"
         lines:
           - "S1"
         number: 5
 
-      - station: "München Flughafen Besucherpark"
+      - station: "Flughafen Besucherpark"
         name: "S8 Departures"
         lines:
           - "S8"

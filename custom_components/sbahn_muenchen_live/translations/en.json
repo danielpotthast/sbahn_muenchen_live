@@ -21,11 +21,16 @@
   "options": {
     "step": {
       "init": {
+        "description": "Destinations must match the exact text shown in the sensor's `departures` attribute (e.g. \"Flughafen/Airport ✈\", not a shortened station name) — leave empty first, check the attribute, then fill this in.",
         "data": {
           "destinations": "Destinations (comma-separated)",
           "lines": "Lines (comma-separated)",
           "timeoffset": "Time offset (minutes)",
           "number": "Number of departures"
+        },
+        "data_description": {
+          "destinations": "Exact destination text as shown live, e.g. \"Flughafen/Airport ✈\"",
+          "lines": "Exact line names as shown live, e.g. \"S1, S8\""
         }
       }
     }

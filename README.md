@@ -53,6 +53,13 @@ After setup, use the integration's **Configure** button to adjust:
 | `timeoffset` | 0 | Minimum minutes until departure |
 | `number` | 5 | Maximum number of departures to show |
 
+> **Note:** `destinations` and `lines` must match the *exact* text the live
+> feed reports, not the shortened station names used for the dropdown above.
+> The airport, for example, appears as a destination named
+> `"Flughafen/Airport ✈"`, not `"Flughafen Terminal"`. Set up the sensor
+> without filters first, check its `departures` attribute in **Developer
+> Tools → States** to see the real strings, then fill in the filter.
+
 ### Legacy YAML configuration
 
 Existing `configuration.yaml` entries under `sensor: - platform: sbahn_muenchen_live` are
@@ -64,7 +71,7 @@ configuration is not needed — use the UI going forward.
 sensor:
   - platform: sbahn_muenchen_live
     nextdeparture:
-      - station: "München Flughafen Besucherpark"
+      - station: "Flughafen Besucherpark"
         name: "Airport Departures"
 ```
 
