@@ -1,0 +1,11 @@
+{
+  "domain": "sbahn_muenchen_live",
+  "version": "2.0.0",
+  "name": "S-Bahn München Live",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/danielpotthast/sbahn_muenchen_live",
+  "iot_class": "cloud_polling",
+  "loggers": ["SBM"],
+  "requirements": ["websockets==13.1", "certifi==2024.8.30"]
+}

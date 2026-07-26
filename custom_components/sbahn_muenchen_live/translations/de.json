@@ -1,0 +1,39 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "S-Bahn-Station hinzufügen",
+        "description": "Wähle eine Station der S-Bahn München aus.",
+        "data": {
+          "station_id": "Station",
+          "name": "Name"
+        }
+      }
+    },
+    "error": {
+      "invalid_station": "Station konnte nicht gefunden werden."
+    },
+    "abort": {
+      "already_configured": "Diese Station ist bereits konfiguriert.",
+      "invalid_station": "Station konnte nicht gefunden werden."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "destinations": "Ziele (kommagetrennt)",
+          "lines": "Linien (kommagetrennt)",
+          "timeoffset": "Zeitversatz (Minuten)",
+          "number": "Anzahl Abfahrten"
+        }
+      }
+    }
+  },
+  "issues": {
+    "deprecated_yaml": {
+      "title": "Die SBM-YAML-Konfiguration ist veraltet",
+      "description": "SBM-Stationen aus der `configuration.yaml` wurden automatisch als Config Entries importiert. Der Block `sensor: - platform: sbm` kann jetzt aus der `configuration.yaml` entfernt werden."
+    }
+  }
+}

@@ -1,0 +1,46 @@
+# Legacy YAML configuration for the SBM integration
+#
+# This format is deprecated: entries below are imported automatically into
+# config entries on startup, and a repair notification will ask you to
+# remove this block afterwards. For new setups, use
+# Settings -> Devices & Services -> Add Integration -> "S-Bahn München Live"
+# instead, which offers a searchable station dropdown.
+
+sensor:
+  # Basic configuration using station name
+  - platform: sbahn_muenchen_live
+    nextdeparture:
+      - station: "München Flughafen Besucherpark"
+        name: "Airport Departures"
+
+  # Advanced configuration with filters
+  - platform: sbahn_muenchen_live
+    nextdeparture:
+      - station: "München Flughafen Besucherpark"
+        name: "Munich Airport S-Bahn"
+        destinations:
+          - "Herrsching"
+          - "München Leuchtenbergring"
+        lines:
+          - "S8"
+          - "S1"
+        timeoffset: 0
+        number: 10
+
+  # Multiple sensors for different lines
+  - platform: sbahn_muenchen_live
+    nextdeparture:
+      - station: "München Flughafen Besucherpark"
+        name: "S1 Departures"
+        lines:
+          - "S1"
+        number: 5
+
+      - station: "München Flughafen Besucherpark"
+        name: "S8 Departures"
+        lines:
+          - "S8"
+        number: 5
+
+# The full, generated list of known station names and IDs lives in
+# custom_components/sbahn_muenchen_live/stations.py.
