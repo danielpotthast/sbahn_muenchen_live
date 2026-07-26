@@ -28,8 +28,14 @@ import websockets
 
 _LOGGER = logging.getLogger(__name__)
 
-# Covers the whole S-Bahn München network (same bbox used by geOps' own live map).
-_BBOX_COMMAND = "BBOX 2391006 2098479 5282852 3928367 5 tenant=sbm channel_prefix=schematic"
+# Covers the whole S-Bahn München network. The bounds are derived from the
+# actual extent of the `station_schematic` feed (measured: x 156857..4795038,
+# y 174534..3263878), padded a bit on each side. An earlier version of this
+# bbox (copied from a dev script) only covered ~15% of the network's stations
+# and missed most branches (including the airport line), which meant most
+# trains never showed up here at all and `train_units` stayed null far more
+# often than it should have.
+_BBOX_COMMAND = "BBOX 100000 100000 4850000 3350000 5 tenant=sbm channel_prefix=schematic"
 
 _RECV_TIMEOUT = 90.0  # reconnect if the feed goes silent for this long
 _CACHE_TTL = 3600.0  # drop cached entries older than this
@@ -83,7 +89,7 @@ class TrainFormationTracker:
         while not self._stop:
             try:
                 async with websockets.connect(
-                    self._uri, ssl=self._ssl_context, close_timeout=10
+                    self._uri, ssl=self._ssl_context, close_timeout=10, max_queue=None
                 ) as websocket:
                     await websocket.send(_BBOX_COMMAND)
                     delay = _RECONNECT_BASE_DELAY
