@@ -18,14 +18,22 @@ Home Assistant integration for S-Bahn München public transport departures, cove
 
 ### HACS (Recommended)
 
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=danielpotthast&repository=sbahn_muenchen_live&category=integration)
+
+Click the button above, then "Add" to add this repository to HACS. Alternatively, add it manually:
+
 1. Open HACS in your Home Assistant instance
 2. Go to "Integrations"
 3. Click the three dots in the top right corner
 4. Select "Custom repositories"
 5. Add this repository URL
 6. Category: Integration
-7. Click "Install"
-8. Restart Home Assistant
+7. Click "Add"
+
+Either way, afterwards:
+
+8. Search for "S-Bahn München Live" in HACS and install it
+9. Restart Home Assistant
 
 ### Manual Installation
 
